@@ -1444,6 +1444,8 @@ var binOps = [...]ir.Op{
 	syntax.AndNot: ir.OANDNOT,
 	syntax.Shl:    ir.OLSH,
 	syntax.Shr:    ir.ORSH,
+
+	syntax.Neql: ir.ONE,
 }
 
 func (p *noder) binOp(op syntax.Operator) ir.Op {

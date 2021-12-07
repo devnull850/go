@@ -303,6 +303,12 @@ redo:
 			s.tok = _Arrow
 			break
 		}
+		if s.ch == '>' {
+			s.nextch()
+			s.op, s.prec = Neql, precCmp
+			s.tok = _Operator
+			break
+		}
 		s.op, s.prec = Lss, precCmp
 		s.tok = _Operator
 
