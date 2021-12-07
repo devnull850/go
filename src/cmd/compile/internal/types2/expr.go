@@ -240,7 +240,7 @@ func isShift(op syntax.Operator) bool {
 func isComparison(op syntax.Operator) bool {
 	// Note: tokens are not ordered well to make this much easier
 	switch op {
-	case syntax.Eql, syntax.Neq, syntax.Lss, syntax.Leq, syntax.Gtr, syntax.Geq:
+	case syntax.Eql, syntax.Neq, syntax.Neql, syntax.Lss, syntax.Leq, syntax.Gtr, syntax.Geq:
 		return true
 	}
 	return false
@@ -776,7 +776,7 @@ func (check *Checker) comparison(x, y *operand, op syntax.Operator) {
 	if xok || yok {
 		defined := false
 		switch op {
-		case syntax.Eql, syntax.Neq:
+		case syntax.Eql, syntax.Neq, syntax.Neql:
 			// spec: "The equality operators == and != apply to operands that are comparable."
 			defined = Comparable(x.typ) && Comparable(y.typ) || x.isNil() && hasNil(y.typ) || y.isNil() && hasNil(x.typ)
 		case syntax.Lss, syntax.Leq, syntax.Gtr, syntax.Geq:

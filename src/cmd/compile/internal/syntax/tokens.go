@@ -144,6 +144,9 @@ const (
 	AndNot // &^
 	Shl    // <<
 	Shr    // >>
+
+	// precCmp
+	Neql // <>
 )
 
 // Operator precedences
