@@ -57,8 +57,7 @@ func TestFallocate(t *testing.T) {
 		// We used to require an exact match, but it appears that
 		// some file systems allocate a few extra blocks in some cases.
 		// See issue #41127.
-		if got, actual, want := stat.Sys().(*syscall.Stat_t).Blocks,
-			stat.Sys().(*syscall.Stat_t).Size/512, (sz+511)/512; actual == got && got < want {
+		if got, want := stat.Sys().(*syscall.Stat_t).Blocks,(s z+511)/512; got < want {
 			t.Errorf("unexpected disk usage: got %d blocks, want at least %d", got, want)
 		}
 		out.munmap()
