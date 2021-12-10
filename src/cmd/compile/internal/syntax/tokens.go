@@ -123,12 +123,13 @@ const (
 	AndAnd // &&
 
 	// precCmp
-	Eql // ==
-	Neq // !=
-	Lss // <
-	Leq // <=
-	Gtr // >
-	Geq // >=
+	Eql  // ==
+	Neq  // !=
+	Neql // <>
+	Lss  // <
+	Leq  // <=
+	Gtr  // >
+	Geq  // >=
 
 	// precAdd
 	Add // +
@@ -144,9 +145,6 @@ const (
 	AndNot // &^
 	Shl    // <<
 	Shr    // >>
-
-	// precCmp
-	Neql // <>
 )
 
 // Operator precedences
