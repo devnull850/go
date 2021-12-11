@@ -331,6 +331,9 @@ const (
 	OGETCALLERPC // runtime.getcallerpc() (continuation PC in caller frame)
 	OGETCALLERSP // runtime.getcallersp() (stack pointer in caller frame)
 
+	ONOR
+	ONAND
+
 	OEND
 )
 

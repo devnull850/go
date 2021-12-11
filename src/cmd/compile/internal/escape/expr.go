@@ -51,7 +51,7 @@ func (e *escape) exprSkipInit(k hole, n ir.Node) {
 	case ir.OPLUS, ir.ONEG, ir.OBITNOT, ir.ONOT:
 		n := n.(*ir.UnaryExpr)
 		e.discard(n.X)
-	case ir.OADD, ir.OSUB, ir.OOR, ir.OXOR, ir.OMUL, ir.ODIV, ir.OMOD, ir.OLSH, ir.ORSH, ir.OAND, ir.OANDNOT, ir.OEQ, ir.ONE, ir.OLT, ir.OLE, ir.OGT, ir.OGE:
+	case ir.OADD, ir.OSUB, ir.OOR, ir.OXOR, ir.OMUL, ir.ODIV, ir.OMOD, ir.OLSH, ir.ORSH, ir.OAND, ir.OANDNOT, ir.OEQ, ir.ONE, ir.OLT, ir.OLE, ir.OGT, ir.OGE, 161, 162:
 		n := n.(*ir.BinaryExpr)
 		e.discard(n.X)
 		e.discard(n.Y)

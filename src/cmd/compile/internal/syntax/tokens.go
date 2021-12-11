@@ -135,6 +135,7 @@ const (
 	Add // +
 	Sub // -
 	Or  // |
+	Nor // !|
 	Xor // ^
 
 	// precMul
@@ -142,6 +143,7 @@ const (
 	Div    // /
 	Rem    // %
 	And    // &
+	Nand   // !&
 	AndNot // &^
 	Shl    // <<
 	Shr    // >>
