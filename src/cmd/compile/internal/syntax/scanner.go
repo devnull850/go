@@ -346,6 +346,18 @@ redo:
 			s.tok = _Operator
 			break
 		}
+		if s.ch == '|' {
+			s.nextch()
+			s.op, s.prec = Nor, precAdd
+			s.tok = _Operator
+			break
+		}
+		if s.ch == '&' {
+			s.nextch()
+			s.op, s.prec = Nand, precMul
+			s.tok = _Operator
+			break
+		}
 		s.op, s.prec = Not, 0
 		s.tok = _Operator
 

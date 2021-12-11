@@ -24,19 +24,21 @@ func _() {
 	_ = x[Add-14]
 	_ = x[Sub-15]
 	_ = x[Or-16]
-	_ = x[Xor-17]
-	_ = x[Mul-18]
-	_ = x[Div-19]
-	_ = x[Rem-20]
-	_ = x[And-21]
-	_ = x[AndNot-22]
-	_ = x[Shl-23]
-	_ = x[Shr-24]
+	_ = x[Nor-17]
+	_ = x[Xor-18]
+	_ = x[Mul-19]
+	_ = x[Div-20]
+	_ = x[Rem-21]
+	_ = x[And-22]
+	_ = x[Nand-23]
+	_ = x[AndNot-24]
+	_ = x[Shl-25]
+	_ = x[Shr-26]
 }
 
-const _Operator_name = ":!<-~||&&==!=<><<=>>=+-|^*/%&&^<<>>"
+const _Operator_name = ":!<-~||&&==!=<><<=>>=+-|!|^*/%&!&&^<<>>"
 
-var _Operator_index = [...]uint8{0, 1, 2, 4, 5, 7, 9, 11, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 33, 35}
+var _Operator_index = [...]uint8{0, 1, 2, 4, 5, 7, 9, 11, 13, 15, 16, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 33, 35, 37, 39}
 
 func (i Operator) String() string {
 	i -= 1

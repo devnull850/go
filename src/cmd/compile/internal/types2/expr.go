@@ -965,6 +965,8 @@ func init() {
 		syntax.Or:     allInteger,
 		syntax.Xor:    allInteger,
 		syntax.AndNot: allInteger,
+		syntax.Nor:    allInteger,
+		syntax.Nand:   allInteger,
 
 		syntax.AndAnd: allBoolean,
 		syntax.OrOr:   allBoolean,
@@ -1753,11 +1755,13 @@ var op2tok = [...]token.Token{
 	syntax.Sub: token.SUB,
 	syntax.Or:  token.OR,
 	syntax.Xor: token.XOR,
+	syntax.Nor: 83,
 
 	syntax.Mul:    token.MUL,
 	syntax.Div:    token.QUO,
 	syntax.Rem:    token.REM,
 	syntax.And:    token.AND,
+	syntax.Nand:   82,
 	syntax.AndNot: token.AND_NOT,
 	syntax.Shl:    token.SHL,
 	syntax.Shr:    token.SHR,

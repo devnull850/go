@@ -2908,6 +2908,18 @@ func (s *state) exprCheckPtr(n ir.Node, checkPtrOK bool) *ssa.Value {
 		b := s.expr(n.Y)
 		b = s.newValue1(s.ssaOp(ir.OBITNOT, b.Type), b.Type, b)
 		return s.newValue2(s.ssaOp(ir.OAND, n.Type()), a.Type, a, b)
+	case ir.ONOR:
+		n := n.(*ir.BinaryExpr)
+		a := s.expr(n.X)
+		b := s.expr(n.Y)
+		a = s.newValue2(s.ssaOp(ir.OOR, n.Type()), a.Type, a, b)
+		return s.newValue1(s.ssaOp(ir.OBITNOT, a.Type), a.Type, a)
+	case ir.ONAND:
+		n := n.(*ir.BinaryExpr)
+		a := s.expr(n.X)
+		b := s.expr(n.Y)
+		a = s.newValue2(s.ssaOp(ir.OAND, n.Type()), a.Type, a, b)
+		return s.newValue1(s.ssaOp(ir.OBITNOT, a.Type), a.Type, a)
 	case ir.OLSH, ir.ORSH:
 		n := n.(*ir.BinaryExpr)
 		a := s.expr(n.X)

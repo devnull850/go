@@ -129,6 +129,8 @@ const (
 	additional_beg
 	// additional tokens, handled in an ad-hoc manner
 	TILDE
+	NAND
+	NOR
 	additional_end
 )
 
@@ -232,6 +234,8 @@ var tokens = [...]string{
 	VAR:    "var",
 
 	TILDE: "~",
+	NAND:  "!&",
+	NOR:   "!|",
 }
 
 // String returns the string corresponding to the token tok.
@@ -275,9 +279,9 @@ func (op Token) Precedence() int {
 		return 2
 	case EQL, NEQ, LSS, LEQ, GTR, GEQ:
 		return 3
-	case ADD, SUB, OR, XOR:
+	case ADD, SUB, OR, XOR, NOR:
 		return 4
-	case MUL, QUO, REM, SHL, SHR, AND, AND_NOT:
+	case MUL, QUO, REM, SHL, SHR, AND, AND_NOT, NAND:
 		return 5
 	}
 	return LowestPrec
