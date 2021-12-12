@@ -114,6 +114,12 @@ func TestParseAddr(t *testing.T) {
 			ip:  MkAddr(Mk128(0x0001000200000000, 0x0000ffffc0a88cff), intern.Get("eth1")),
 			str: "1:2::ffff:c0a8:8cff%eth1",
 		},
+		// 4-in-6 with zone
+		{
+			in:  "::ffff:192.168.140.255%eth1",
+			ip:  MkAddr(Mk128(0, 0x0000ffffc0a88cff), intern.Get("eth1")),
+			str: "::ffff:192.168.140.255%eth1",
+		},
 		// IPv6 with capital letters.
 		{
 			in:  "FD9E:1A04:F01D::1",
@@ -337,6 +343,32 @@ func TestAddrMarshalUnmarshalBinary(t *testing.T) {
 		var ip2 Addr
 		if err := ip2.UnmarshalBinary(bytes.Repeat([]byte{1}, n)); err == nil {
 			t.Fatalf("unmarshaled from unexpected IP length %d", n)
+		}
+	}
+}
+
+func TestAddrPortMarshalTextString(t *testing.T) {
+	tests := []struct {
+		in   AddrPort
+		want string
+	}{
+		{mustIPPort("1.2.3.4:80"), "1.2.3.4:80"},
+		{mustIPPort("[1::CAFE]:80"), "[1::cafe]:80"},
+		{mustIPPort("[1::CAFE%en0]:80"), "[1::cafe%en0]:80"},
+		{mustIPPort("[::FFFF:192.168.140.255]:80"), "[::ffff:192.168.140.255]:80"},
+		{mustIPPort("[::FFFF:192.168.140.255%en0]:80"), "[::ffff:192.168.140.255%en0]:80"},
+	}
+	for i, tt := range tests {
+		if got := tt.in.String(); got != tt.want {
+			t.Errorf("%d. for (%v, %v) String = %q; want %q", i, tt.in.Addr(), tt.in.Port(), got, tt.want)
+		}
+		mt, err := tt.in.MarshalText()
+		if err != nil {
+			t.Errorf("%d. for (%v, %v) MarshalText error: %v", i, tt.in.Addr(), tt.in.Port(), err)
+			continue
+		}
+		if string(mt) != tt.want {
+			t.Errorf("%d. for (%v, %v) MarshalText = %q; want %q", i, tt.in.Addr(), tt.in.Port(), mt, tt.want)
 		}
 	}
 }
