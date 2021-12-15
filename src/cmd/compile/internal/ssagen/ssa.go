@@ -2789,6 +2789,12 @@ func (s *state) exprCheckPtr(n ir.Node, checkPtrOK bool) *ssa.Value {
 		}
 		// integer comparison
 		return s.newValue2(s.ssaOp(op, n.X.Type()), types.Types[types.TBOOL], a, b)
+	case ir.OPOW:
+		n := n.(*ir.BinaryExpr)
+		a := s.expr(n.X)
+		// b := s.expr(n.Y)
+
+		return s.newValue2(s.ssaOp(ir.OMUL, n.Type()), a.Type, a, a)
 	case ir.OMUL:
 		n := n.(*ir.BinaryExpr)
 		a := s.expr(n.X)

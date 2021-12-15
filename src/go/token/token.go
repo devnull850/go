@@ -131,6 +131,7 @@ const (
 	TILDE
 	NAND
 	NOR
+	POW
 	additional_end
 )
 
@@ -236,6 +237,7 @@ var tokens = [...]string{
 	TILDE: "~",
 	NAND:  "!&",
 	NOR:   "!|",
+	POW:   "^^",
 }
 
 // String returns the string corresponding to the token tok.
@@ -283,6 +285,8 @@ func (op Token) Precedence() int {
 		return 4
 	case MUL, QUO, REM, SHL, SHR, AND, AND_NOT, NAND:
 		return 5
+	case POW:
+		return 6
 	}
 	return LowestPrec
 }

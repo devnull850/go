@@ -147,6 +147,9 @@ const (
 	AndNot // &^
 	Shl    // <<
 	Shr    // >>
+
+	// precPow
+	Pow // ^^
 )
 
 // Operator precedences

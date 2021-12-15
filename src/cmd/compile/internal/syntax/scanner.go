@@ -282,6 +282,12 @@ redo:
 
 	case '^':
 		s.nextch()
+		if s.ch == '^' {
+			s.nextch()
+			s.op, s.prec = Pow, 6
+			s.tok = _Operator
+			break
+		}
 		s.op, s.prec = Xor, precAdd
 		goto assignop
 

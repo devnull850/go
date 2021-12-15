@@ -333,6 +333,7 @@ const (
 
 	ONOR
 	ONAND
+	OPOW
 
 	OEND
 )

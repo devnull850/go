@@ -118,7 +118,7 @@ func walkExpr1(n ir.Node, init *ir.Nodes) ir.Node {
 		return n
 
 	case ir.OEFACE, ir.OAND, ir.OANDNOT, ir.OSUB, ir.OMUL, ir.OADD, ir.OOR, ir.OXOR, ir.OLSH, ir.ORSH,
-		ir.OUNSAFEADD, 161, 162:
+		ir.OUNSAFEADD, 161, 162, 163:
 		n := n.(*ir.BinaryExpr)
 		n.X = walkExpr(n.X, init)
 		n.Y = walkExpr(n.Y, init)
