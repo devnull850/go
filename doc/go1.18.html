@@ -97,6 +97,12 @@ Do not send CLs removing the interior tags from such phrases.
       The Go compiler cannot currently handle type declarations inside generic functions
       or methods. We hope to provide support for this feature in Go 1.19.
     </li>
+    <li><!-- https://golang.org/issue/49030 -->
+      Embedding a type parameter, or a pointer to a type parameter, as
+      an unnamed field in a struct type is not permitted. Similarly
+      embedding a type parameter in an interface type is not permitted.
+      Whether these will ever be permitted is unclear at present.
+    </li>
   </ul>
 </p>
 
@@ -116,7 +122,7 @@ Do not send CLs removing the interior tags from such phrases.
 
 <p>
   The Go 1.18 compiler now reports an overflow when passing a rune constant expression
-  such as <code>'1' << 32</code> as an argument to the predeclared functions
+  such as <code>'1' &lt;&lt; 32</code> as an argument to the predeclared functions
   <code>print</code> and <code>println</code>, consistent with the behavior of
   user-defined functions. Before Go 1.18, the compiler did not report an error
   in such cases but silently accepted such constant arguments if they fit into an
@@ -442,10 +448,10 @@ Do not send CLs removing the interior tags from such phrases.
   methods that parallel existing methods, but
   return <code>netip.AddrPort</code> instead of the
   heavier-weight <a href="/pkg/net/#IP"><code>net.IP</code></a> or
-  <a href="/pkg/net/#UDPAddr"<code>*net.UDPAddr</code></a> types.
+  <a href="/pkg/net/#UDPAddr"><code>*net.UDPAddr</code></a> types.
   The <code>net</code> package also now includes functions and methods
   to convert between the existing
-  <a href="/pkg/net/#TCPAddr"><code>TCPAddr</code>/<a href="/pkg/net/#UDPAddr"><code>UDPAddr</code>
+  <a href="/pkg/net/#TCPAddr"><code>TCPAddr</code></a>/<a href="/pkg/net/#UDPAddr"><code>UDPAddr</code></a>
   types and <code>netip.AddrPort</code>.
 </p>
 
@@ -853,7 +859,7 @@ Do not send CLs removing the interior tags from such phrases.
       The precedence of <code>/</code> in the argument for <code>-run</code> and
       <code>-bench</code> has been increased. <code>A/B|C/D</code> used to be
       treated as <code>A/(B|C)/D</code> and is now treated as
-      <code>(A/B)/(C/D)</code>.
+      <code>(A/B)|(C/D)</code>.
     </p>
 
     <p><!-- CL 356669 -->
